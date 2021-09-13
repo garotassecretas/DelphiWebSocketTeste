@@ -1,0 +1,4 @@
+O projeto executavel (.exe) deve ficar nessa pasta. 
+
+E a pasta www contém os arquivos personalizados em HTML.
+Caso essa pasta seja deletada o programa ira abrir no navegador uma pagina com erro 404 interna. 
