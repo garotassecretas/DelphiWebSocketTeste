@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/06/11 21:17:18.000.607,=C:\Users\conta\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/08/24 01:16:58.000.816,=C:\Users\conta\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/08/24 01:48:01.000.804,=C:\Users\conta\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/08/24 01:51:47.000.997,C:\Users\conta\Documents\Embarcadero\Studio\Projects\Unit1.dfm=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit1.dfm</Transaction>
+    <Transaction>2021/08/24 01:51:47.000.997,C:\Users\conta\Documents\Embarcadero\Studio\Projects\Unit1.pas=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit1.pas</Transaction>
+    <Transaction>2021/08/24 01:51:52.000.702,C:\Users\conta\Documents\Embarcadero\Studio\Projects\Project1.dproj=F:\@Works\Delphi\_TCP Client Server\websocketteste\Project1.dproj</Transaction>
+    <Transaction>2021/08/24 21:34:52.000.581,=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit2.pas</Transaction>
+    <Transaction>2021/08/24 21:35:20.000.951,F:\@Works\Delphi\_TCP Client Server\websocketteste\fvrWebFunctions.pas=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit2.pas</Transaction>
+    <Transaction>2021/08/24 22:24:05.000.566,=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit2.pas</Transaction>
+    <Transaction>2021/08/24 22:24:28.000.072,F:\@Works\Delphi\_TCP Client Server\websocketteste\Web.Win.Sockets.pas=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit2.pas</Transaction>
+    <Transaction>2021/08/25 03:00:18.000.590,=F:\@Works\Delphi\_TCP Client Server\websocketteste\WebSocketServer.pas</Transaction>
+    <Transaction>2021/09/12 20:43:26.787,F:\@Works\Delphi\_TCP Client Server\websocketteste\WebFunctions.pas=F:\@Works\Delphi\_TCP Client Server\websocketteste\fvrWebFunctions.pas</Transaction>
+    <Transaction>2021/09/12 22:01:12.147,F:\@Works\Delphi\_TCP Client Server\websocketteste\WebSocketServer.pas=</Transaction>
+  </Transactions>
+</BorlandProject>
