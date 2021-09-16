@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+	<title>WebSocket demo client</title>
+</head>
+	<body>
+		<button id="btnteste">Executar Teste</button>
+		<script>
+			const socket = new WebSocket('ws://10.0.0.100:8082');
+
+			// Connection opened
+			socket.addEventListener('open', function (event) {
+				socket.send('Hello Server!');
+				socket.send('Teste Blablabla');
+			});
+
+			// Listen for messages
+			socket.addEventListener('message', function (event) {
+				console.log('Message from server "' + event.data + '"');
+			});
+			
+			document.getElementById("btnteste").addEventListener('click', function (event) {
+				socket.send('tstcommand');
+			});
+		</script>
+	</body>
+</html>
