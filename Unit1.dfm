@@ -11,7 +11,9 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object pnbotton: TPanel
@@ -23,9 +25,6 @@ object Form1: TForm1
     Constraints.MinHeight = 150
     Constraints.MinWidth = 300
     TabOrder = 0
-    ExplicitTop = 100
-    ExplicitWidth = 300
-    ExplicitHeight = 150
     object Memo1: TMemo
       AlignWithMargins = True
       Left = 11
@@ -38,8 +37,6 @@ object Form1: TForm1
       Margins.Bottom = 10
       Align = alClient
       TabOrder = 0
-      ExplicitWidth = 278
-      ExplicitHeight = 128
     end
   end
   object pntop: TPanel
@@ -97,8 +94,8 @@ object Form1: TForm1
     object Label2: TLabel
       Left = 169
       Top = 46
-      Width = 384
-      Height = 52
+      Width = 374
+      Height = 39
       Caption = 
         'Gostaria que os itens abaixo fossem ligados ou desligados, tanto' +
         ' direto pelo proprio programa quanto remotamente pelo websocket ' +

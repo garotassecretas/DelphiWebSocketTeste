@@ -99,8 +99,11 @@ begin
             ClientSocket.Sendln('Server: WebApp/1.0 (Win64) by TestAplications');
             ClientSocket.Sendln('Content-Type: text/html');
             ClientSocket.Sendln('');
-            ClientSocket.sendLn('<!DOCTYPE html><html><meta name="viewport" content="width=device-width, initial-scale=1.0"><head><title>WebSocket Html</title></head><body>TESTE PAGINA INTERNA<script>');
-            ClientSocket.sendLn('const socket = new WebSocket("ws://'+GetIPAddress+':'+WebPort.ToString+'");');
+            ClientSocket.sendLn('<!DOCTYPE html><html><meta name="viewport" content="width=device-width, initial-scale=1.0"><head><title>WebSocket Html</title></head><body>TESTE PAGINA INTERNA</br><button id="btnteste">Executar Teste</button><script>');
+            ClientSocket.sendLn('const socket = new WebSocket("ws://'+GetIPAddress+':'+(WebPort+1).ToString+'");');
+            ClientSocket.sendLn('socket.addEventListener("open", function (event) {	socket.send("Hello Server Interno!"); });');
+            ClientSocket.sendLn('socket.addEventListener(''message'', function (event) { console.log(''Message from server "'' + event.data + ''"''); });');
+            ClientSocket.sendLn('document.getElementById("btnteste").addEventListener(''click'', function (event) { socket.send(''tstcommand''); });');
             ClientSocket.sendLn('</script></body></html>');
             //ClientSocket.Close;
             Exit;

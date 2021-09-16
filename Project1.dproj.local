@@ -12,7 +12,14 @@
     <Transaction>2021/08/24 22:24:05.000.566,=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit2.pas</Transaction>
     <Transaction>2021/08/24 22:24:28.000.072,F:\@Works\Delphi\_TCP Client Server\websocketteste\Web.Win.Sockets.pas=F:\@Works\Delphi\_TCP Client Server\websocketteste\Unit2.pas</Transaction>
     <Transaction>2021/08/25 03:00:18.000.590,=F:\@Works\Delphi\_TCP Client Server\websocketteste\WebSocketServer.pas</Transaction>
-    <Transaction>2021/09/12 20:43:26.787,F:\@Works\Delphi\_TCP Client Server\websocketteste\WebFunctions.pas=F:\@Works\Delphi\_TCP Client Server\websocketteste\fvrWebFunctions.pas</Transaction>
-    <Transaction>2021/09/12 22:01:12.147,F:\@Works\Delphi\_TCP Client Server\websocketteste\WebSocketServer.pas=</Transaction>
+    <Transaction>2021/09/12 20:43:26.000.787,F:\@Works\Delphi\_TCP Client Server\websocketteste\WebFunctions.pas=F:\@Works\Delphi\_TCP Client Server\websocketteste\fvrWebFunctions.pas</Transaction>
+    <Transaction>2021/09/12 22:01:12.000.147,F:\@Works\Delphi\_TCP Client Server\websocketteste\WebSocketServer.pas=</Transaction>
+    <Transaction>2021/09/15 20:14:12.922,F:\@Works\Delphi\_TCP Client Server\websocketteste\Web.Win.Sockets.pas=</Transaction>
+    <Transaction>2021/09/15 20:14:37.806,=F:\@Works\Delphi\_TCP Client Server\websocketteste\BirdSocketSrc\Bird.Socket.Connection.pas</Transaction>
+    <Transaction>2021/09/15 20:14:37.824,=F:\@Works\Delphi\_TCP Client Server\websocketteste\BirdSocketSrc\Bird.Socket.Consts.pas</Transaction>
+    <Transaction>2021/09/15 20:14:37.843,=F:\@Works\Delphi\_TCP Client Server\websocketteste\BirdSocketSrc\Bird.Socket.Helpers.pas</Transaction>
+    <Transaction>2021/09/15 20:14:37.862,=F:\@Works\Delphi\_TCP Client Server\websocketteste\BirdSocketSrc\Bird.Socket.pas</Transaction>
+    <Transaction>2021/09/15 20:14:37.880,=F:\@Works\Delphi\_TCP Client Server\websocketteste\BirdSocketSrc\Bird.Socket.Server.pas</Transaction>
+    <Transaction>2021/09/15 20:14:37.899,=F:\@Works\Delphi\_TCP Client Server\websocketteste\BirdSocketSrc\Bird.Socket.Types.pas</Transaction>
   </Transactions>
 </BorlandProject>

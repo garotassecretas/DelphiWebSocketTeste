@@ -106,6 +106,9 @@
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
+        <BRCC_IncludePath>F:\@Works\Delphi\_TCP Client Server\websocketteste\BirdSocketSrc;$(BRCC_IncludePath)</BRCC_IncludePath>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -130,7 +133,12 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="WebFunctions.pas"/>
-        <DCCReference Include="Web.Win.Sockets.pas"/>
+        <DCCReference Include="BirdSocketSrc\Bird.Socket.Connection.pas"/>
+        <DCCReference Include="BirdSocketSrc\Bird.Socket.Consts.pas"/>
+        <DCCReference Include="BirdSocketSrc\Bird.Socket.Helpers.pas"/>
+        <DCCReference Include="BirdSocketSrc\Bird.Socket.pas"/>
+        <DCCReference Include="BirdSocketSrc\Bird.Socket.Server.pas"/>
+        <DCCReference Include="BirdSocketSrc\Bird.Socket.Types.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -151,6 +159,10 @@
                 <Source>
                     <Source Name="MainSource">Project1.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
                 <DeployFile LocalName="Win32\Debug\Project1.exe" Configuration="Debug" Class="ProjectOutput">
