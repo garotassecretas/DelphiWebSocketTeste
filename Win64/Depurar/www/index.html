@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-	<title>WebSocket Samples</title>
+	<title>WebSocket Exemplo</title>
 	<style>
 		table {
 			width: 100%;
@@ -51,19 +52,34 @@
 	<table>
 		<thead>
 			<tr>
-				<th class="header" colspan="2">Digite aqui o comando que quer executar na sua máquina</th>
+				<th class="header" colspan="3">Digite aqui o comando que quer executar na sua máquina</th>
 			</tr>
 
 			<tr style="height: 45px; background-color: white;">
-				<th style="width: 100%;">
-					<input type="text" id="textMessage">
+				<th style="width: 50%;">
+					<input type="text" id="textMessageKey" placeholder="Comando">
+				</th>
+				<th style="width: 50%;">
+					<input type="text" id="textMessageValue" placeholder="Valor">
 				</th>
 				<th>
-					<button onclick="sendMessage()">Comando</button>
+					<button onclick="sendMessage()">Enviar</button>
 				</th>
 			</tr>
+			
+			<tr style="height: 45px; background-color: white;">
+				<th style="width: 50%;">
+					<button onclick="sendTesteLigar()">Teste Ligar</button>
+				</th>
+				<th style="width: 50%;">
+					<button onclick="sendTesteDesligar()">Teste Desligar</button>
+				</th>
+				<th>
+				</th>
+			</tr>
+			
 			<tr>
-				<th class="header" colspan="2">Log</th>
+				<th class="header" colspan="3">Log</th>
 			</tr>			
 		</thead>		
 	</table>
@@ -80,10 +96,14 @@
 </body>
 <script type="text/javascript">
 	
-	const socket = new WebSocket('ws://10.0.0.100:8082');
+	const socket = new WebSocket('ws://WEBIPURLPORT');
 
 	socket.addEventListener('open', function (event) {
-		socket.send('Hello Server!');
+		var sendjsonval = JSON.stringify({
+			cmdkey: 'helloserver',
+			cmdvalue: ''
+		});
+		socket.send(sendjsonval);
 	});
 
 	socket.addEventListener('message', function (event) {
@@ -99,8 +119,31 @@
 		);			
 	});
 
-	function sendMessage() {		
-		socket.send(document.getElementById("textMessage").value);	
+	function sendMessage() {	
+		var sendjsonval = JSON.stringify({
+			cmdkey: document.getElementById("textMessageKey").value,
+			cmdvalue: document.getElementById("textMessageValue").value
+		});
+		console.log(sendjsonval);
+		socket.send(sendjsonval);	
+	};
+	
+	function sendTesteLigar() {	
+		var sendjsonval = JSON.stringify({
+			cmdkey: 'ligarbotao',
+			cmdvalue: ''
+		});
+		console.log(sendjsonval);
+		socket.send(sendjsonval);	
+	};
+	
+	function sendTesteDesligar() {	
+		var sendjsonval = JSON.stringify({
+			cmdkey: 'desligarbotao',
+			cmdvalue: ''
+		});
+		console.log(sendjsonval);
+		socket.send(sendjsonval);	
 	};
 
 </script>
