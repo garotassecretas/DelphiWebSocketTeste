@@ -3,24 +3,22 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1'
   ClientHeight = 418
-  ClientWidth = 735
+  ClientWidth = 727
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnClose = FormClose
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object pnbotton: TPanel
     Left = 0
-    Top = 137
-    Width = 735
-    Height = 281
+    Top = 100
+    Width = 727
+    Height = 318
     Align = alClient
     Constraints.MinHeight = 150
     Constraints.MinWidth = 300
@@ -29,8 +27,8 @@ object Form1: TForm1
       AlignWithMargins = True
       Left = 11
       Top = 11
-      Width = 713
-      Height = 259
+      Width = 705
+      Height = 296
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
@@ -42,23 +40,23 @@ object Form1: TForm1
   object pntop: TPanel
     Left = 0
     Top = 0
-    Width = 735
-    Height = 137
+    Width = 727
+    Height = 100
     Align = alTop
     Constraints.MinHeight = 100
     Constraints.MinWidth = 300
     TabOrder = 1
     DesignSize = (
-      735
-      137)
+      727
+      100)
     object Label1: TLabel
-      Left = 615
-      Top = 8
+      Left = 599
+      Top = 13
       Width = 35
       Height = 13
       Anchors = [akTop, akRight]
       Caption = 'Status:'
-      ExplicitLeft = 185
+      ExplicitLeft = 607
     end
     object Label3: TLabel
       Left = 10
@@ -75,8 +73,8 @@ object Form1: TForm1
       Caption = '000.000.000.000:0000'
     end
     object lblStatus: TLabel
-      Left = 656
-      Top = 8
+      Left = 640
+      Top = 13
       Width = 68
       Height = 13
       Anchors = [akTop, akRight]
@@ -89,33 +87,21 @@ object Form1: TForm1
       Font.Style = []
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 226
-    end
-    object Label2: TLabel
-      Left = 169
-      Top = 46
-      Width = 374
-      Height = 39
-      Caption = 
-        'Gostaria que os itens abaixo fossem ligados ou desligados, tanto' +
-        ' direto pelo proprio programa quanto remotamente pelo websocket ' +
-        'via c'#243'digo em HTML. OBS.: N'#227'o precisaria de servidor pois seria ' +
-        'feito pela mesma rede e n'#227'o online'
-      WordWrap = True
+      ExplicitLeft = 648
     end
     object btnConnect: TButton
-      Left = 349
+      Left = 511
       Top = 8
       Width = 80
       Height = 25
-      Anchors = [akBottom]
+      Anchors = [akTop]
       Caption = 'Conectar'
       TabOrder = 0
       OnClick = btnConnectClick
     end
     object CheckBox1: TCheckBox
       Left = 349
-      Top = 104
+      Top = 52
       Width = 153
       Height = 17
       Caption = 'Check Ligado / Desligado'
@@ -123,7 +109,7 @@ object Form1: TForm1
     end
     object Button1: TButton
       Left = 209
-      Top = 100
+      Top = 48
       Width = 122
       Height = 25
       Caption = 'TESTE LiGA DESLIGA'

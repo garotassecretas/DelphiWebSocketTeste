@@ -1,11 +1,11 @@
 # DelphiWebSocketTeste
 Teste de Websocket em Delphi
 
-Eu gostaria de fazer uma pagina em HTML executar um comando dentro da minha aplicação.
-O  botão da pagina html pelo navegador deveria enviar um comando para a aplicação do meu pc da mesma rede para mudar alguma configuração ou executar algum comando.
+Você deve iniciar o servidor HTTP que automaticamente também irá iniciar o Websocket.
+Depois é só entrar no navegador pelo IP mostrado no programa e você poderá enviar comandos via websocket para o programa. 
 
 ### Programa de Teste no PC 
-Na imagem abaixo mostra o exemplo do programa do pc onde o botão de Teste pode ser ligado e desligado pelo proprio programa, e é ele q eu eu gostaria que fosse ligado também via HTML
+Na imagem abaixo mostra o exemplo do programa do pc onde o botão de Teste pode ser ligado e desligado pelo proprio programa.
 
 ![Imagem do Programa no PC](./Captura%20de%20tela%202021-09-12%20222732.jpg)
 

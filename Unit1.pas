@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, WebFunctions, Bird.Socket;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  WebHttPages, ListaDeComandos;
 
 type
   TForm1 = class(TForm)
@@ -18,83 +19,45 @@ type
     pntop: TPanel;
     CheckBox1: TCheckBox;
     Button1: TButton;
-    Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure btnConnectClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
-    TestWebServ: TWebServer;
-    FBirdSocket: TBirdSocket;
+    WebServHttPages: TWebServer;
+    WebServCommands: TWebSocketCommands;
     procedure SConnect;
     procedure SDisconnect;
     procedure ActivateDeactivate;
   public
     { Public declarations }
+    procedure TesteAtivar;
+    procedure TesteDesativar;
   end;
 
 var
   Form1: TForm1;
   HostIp: String;
 
+const
+  HttpServerPort = 8181;
+  WebSocketPort = 8182;
+
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.SConnect;
+procedure TForm1.FormCreate(Sender: TObject);
 begin
-  if not(WebFunctions.isConnected) then
-    begin
-      btnConnect.Caption := 'Desconectar';
-      lblStatus.Caption := 'Conectado';
-      lblStatus.Font.Color := clLime;
-      WebFunctions.isConnected := true;
-      TestWebServ := TWebServer.Create;
-      FBirdSocket.Start;
+  HostIp := GetIPAddress;
+  lblLocalIP.Caption := HostIp+':'+HttpServerPort.ToString;
 
-      Memo1.Lines.Add('Servidor Iniciado no Host :' + HostIp+':'+WebPort.ToString);
-    end;
-end;
-
-procedure TForm1.SDisconnect;
-begin
-  if WebFunctions.isConnected then
-    begin
-     btnConnect.Caption := 'Conectar';
-     lblStatus.Caption := 'Desconectado';
-     lblStatus.Font.Color := clRed;
-     WebFunctions.isConnected := false;
-     TestWebServ.WebClose;
-       if FBirdSocket.Active then
-        begin
-          //FBirdSocket.DisposeOf; trava o programa
-          FBirdSocket.Stop;
-          //FBirdSocket.Free; // trava o programa
-        end;
-
-     Memo1.Lines.Add('Servidor foi Desligado');
-    end;
-end;
-
-procedure TForm1.ActivateDeactivate;
-begin
-  if CheckBox1.Checked then
-  begin
-    Button1.Caption := 'Teste Desligado';
-    CheckBox1.Checked := false;
-  end
-    else
-  begin
-    Button1.Caption := 'Teste Ligado';
-    CheckBox1.Checked := true;
-  end;
 end;
 
 procedure TForm1.btnConnectClick(Sender: TObject);
 begin
-  if WebFunctions.isConnected then
+  if WebHttPages.isConnected then
       SDisconnect
     else
       SConnect;
@@ -105,70 +68,78 @@ begin
   ActivateDeactivate;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TForm1.SConnect;
 begin
-  HostIp := GetIPAddress;
-  lblLocalIP.Caption := HostIp+':'+WebPort.ToString;
-  FBirdSocket := TBirdSocket.Create(WebPort+1);
+  if not(WebHttPages.isConnected) then
+    begin
+      try
+        // Inicia o Servidor HTTP
+        WebServHttPages := TWebServer.Create;
+        WebHttPages.isConnected := true;
+        // Inicia o WebSocket
+        WebServCommands := TWebSocketCommands.Create;
 
-  try
-    FBirdSocket.AddEventListener(TEventType.CONNECT,
-      procedure(const ABird: TBirdSocketConnection)
-      begin
-        Memo1.Lines.Add(Format('Client %s connected.', [ABird.IPAdress]));
-      end);
+        // Muda o Status do botão de Desconectado para Conectado
+        btnConnect.Caption := 'Desconectar';
+        lblStatus.Caption := 'Conectado';
+        lblStatus.Font.Color := clLime;
+      except
+        on E: Exception do
+           Memo1.Lines.Add(E.Message);
+      end;
 
-    FBirdSocket.AddEventListener(TEventType.EXECUTE,
-      procedure(const ABird: TBirdSocketConnection)
-      var
-        LMessage: string;
-      begin
-        LMessage := ABird.WaitMessage;
+      Memo1.Lines.Add('Servidor Iniciado no Host :' + HostIp+':'+HttpServerPort.ToString);
+      Memo1.Lines.Add('WebSocket : ws://' + HostIp+':'+WebsocketPort.ToString);
+    end;
+end;
 
-        if LMessage.Trim.Equals('ping') then
-        begin
-          ABird.Send('pong');
-          {*  COLOQUE AQUI O COMANDO QUE VAI EXECUTAR NO PC*}
-        end
-        else
-        if LMessage.Trim.Equals('tstcommand') then
-        begin
-          ActivateDeactivate;
-          ABird.Send('Testado ok');
-        end
-        else
-        if LMessage.Trim.IsEmpty then
-        begin
-          {*  COLOQUE AQUI O COMANDO QUE VAI EXECUTAR NO PC*}
-          ABird.Send('empty message');
-        end
-        else
-          ABird.Send(Format('message received: "%s"', [LMessage]));
+procedure TForm1.SDisconnect;
+begin
+  if WebHttPages.isConnected then
+    begin
+      // Desliga o Servidor HTTP
+     WebServHttPages.WebClose;
+     WebHttPages.isConnected := false;
 
-        Memo1.Lines.Add(Format('Message received from %s: %s.', [ABird.IPAdress, LMessage]));
-      end);
+     // Desliga o Websocket
+     WebServCommands.Destroy;
 
-    FBirdSocket.AddEventListener(TEventType.DISCONNECT,
-      procedure(const ABird: TBirdSocketConnection)
-      begin
-        Memo1.Lines.Add(Format('Client %s disconnected.', [ABird.IPAdress]));
-      end);
+     // Muda o Status do botão de Conectado para Desconectado
+     btnConnect.Caption := 'Conectar';
+     lblStatus.Caption := 'Desconectado';
+     lblStatus.Font.Color := clRed;
 
-    SConnect;
+     Memo1.Lines.Add('Servidor foi Desligado');
+    end;
+end;
 
-  finally
-    //FBirdSocket.DisposeOf; // essa linha desconecta tudo e deve ser removida
+procedure TForm1.ActivateDeactivate;
+begin
+  if CheckBox1.Checked then
+  begin
+    TesteDesativar;
+  end
+    else
+  begin
+    TesteAtivar;
   end;
+end;
+
+procedure TForm1.TesteAtivar;
+begin
+    Button1.Caption := 'Teste Ligado';
+    CheckBox1.Checked := true;
+end;
+
+procedure TForm1.TesteDesativar;
+begin
+    Button1.Caption := 'Teste Desligado';
+    CheckBox1.Checked := false;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   SDisconnect;
-end;
-
-procedure TForm1.FormDestroy(Sender: TObject);
-begin
-  // FBirdSocket.Free; trava o programa e continua sendo executado no windows mesmo depois de fechar
 end;
 
 end.
